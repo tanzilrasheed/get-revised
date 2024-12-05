@@ -1,0 +1,60 @@
+.li {
+    border: solid black;
+    list-style: none;
+    margin-top: 10px;
+}
+
+
+.subject {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(203, 198, 198);
+    text-decoration: none;
+    color: black;
+}
+
+
+.subject > *{
+    margin: 10px;
+}
+
+
+.subject:hover {
+    background: rgb(177, 171, 171);
+}
+
+
+.button {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+.deleteButton {
+    color: red;
+}
+
+.deleteButton:hover {
+    background: red;
+    color: white;
+}
+
+
+.actionsContainer {
+    border: solid;
+    display: flex;
+}
+
+
+
+@media screen and (min-width: 500px) {
+    .subject {
+        width: 100%;
+    }
+}

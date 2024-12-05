@@ -1,0 +1,64 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0px;
+  }
+  
+  .siteName {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .authButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .authButton {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .authButton:hover {
+    background: #777;
+  }
+  
+  .hamburgerIcon {
+    color: white;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menuOptions {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background: #444;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menuLink {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .menuLink:hover {
+    color: #ffcc00;
+  }
+  

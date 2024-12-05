@@ -1,0 +1,42 @@
+.home {
+    margin: 30px;
+}
+
+.aboutDescription {
+    display: flex;
+}
+
+.aboutDescription img {
+    width: 50%;
+}
+
+.notesHeading {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+
+.revisionHeading {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .home {
+        margin: 10px;
+    }    
+}
+
+
+@media screen and (max-width: 500px) {
+    .aboutDescription{
+        flex-direction: column;
+    }
+    .aboutDescription > img {
+        width: 90%;
+    }
+}

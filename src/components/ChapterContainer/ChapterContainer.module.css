@@ -1,0 +1,95 @@
+.chapterContainer {
+    border: solid;
+    width: 15%;
+    background-color: rgb(181, 177, 177);
+    padding: 5px;
+    height: 70vh;
+
+}
+
+
+.header {
+    text-align: center;
+    width: 100%;
+    background: black;
+    color: white;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    background: grey;
+    border: solid;
+}
+
+
+.editBtn {
+    background: blue;
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-weight: bolder;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.editBtn:hover {
+    cursor: pointer;
+    background: white;
+    color: blue;
+}
+
+
+.doneBtn {
+    background: green;
+    font-weight: bolder;
+    color: white;
+}
+
+
+.doneBtn:hover {
+    color: green;
+    background: white;
+    cursor: pointer;
+}
+
+
+.addChapterBtn {
+    width: 100%;
+    background: yellowgreen;
+    font-weight: bolder;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+
+.addChapterBtn:hover {
+    cursor: pointer;
+    background: rgb(21, 165, 14);
+    color: white;
+}
+
+
+.chapterList {
+    list-style-type: none;
+    overflow: auto;
+}
+
+
+
+
+
+
+@media screen and (max-width: 880px) {
+    .chapterContainer {
+        width: 25vw;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .chapterContainer {
+        width: 90vw;
+    }
+    
+}

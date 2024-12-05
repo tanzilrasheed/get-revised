@@ -1,0 +1,44 @@
+.subjectSection {
+    margin: auto;
+    width: 50%;
+    box-shadow:  0 0 10px 0 green;
+    height: 70vh;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+
+.input {
+    height: 30px;
+}
+.button {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+
+}
+
+.subjectContainerDiv {
+    display: flex;
+    flex-direction: column;
+}
+.noSubjectMessage {
+    display: flex;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+    .subjectSection {
+        width: 80%;
+        padding: 8%;
+        margin: auto;
+    }
+}

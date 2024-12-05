@@ -1,0 +1,50 @@
+.chapter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid;
+    margin-top: 5px;
+    background: grey;
+    cursor: pointer;
+}
+
+
+.chapter > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.chapter:hover {
+    background: lightgrey;
+}
+
+
+
+.editBtn {
+    background: aqua;
+    margin-right: 3px;
+}
+
+
+
+.editBtn:hover {
+    cursor: pointer;
+    background: white;
+}
+
+
+
+.deleteBtn {
+    background: red;
+    font-weight: bolder;
+    color: white;
+}
+
+
+.deleteBtn:hover {
+    color: red;
+    background: white;
+    cursor: pointer;
+}
