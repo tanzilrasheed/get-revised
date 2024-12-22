@@ -21,6 +21,23 @@
 }
 
 
+.selectedChapter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid;
+    margin-top: 5px;
+    background: lightgrey;
+    cursor: pointer;
+}
+
+
+
+.selectedChapter > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+}
+
 
 .editBtn {
     background: aqua;

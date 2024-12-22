@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import styles from './Subject.module.css';
 
 
-const Subject = React.memo(({ subject, subjectsObj, setSubjectsObj, setEditFormVisible, setEditSubject}) => {
+const  Subject = React.memo(({ subject, subjectsObj, setSubjectsObj, setEditFormVisible, setEditValue}) => {
     const handleEdit = (e) => {
         e.preventDefault();
         e.stopPropagation();
         setEditFormVisible(true);
-        setEditSubject(subject);
+        setEditValue(subject);
     }
 
     
@@ -27,7 +27,7 @@ const Subject = React.memo(({ subject, subjectsObj, setSubjectsObj, setEditFormV
             key={subject}
             className={styles.li}
         >
-            <Link to={'/subject-detail'} className={styles.subject} state={{subject, subjectsObj}}>
+            <Link to={'/subject-detail'} className={styles.subject} state={{subject}}>
                 <p className={styles.subjectName}>
                     {subject}
                 </p>

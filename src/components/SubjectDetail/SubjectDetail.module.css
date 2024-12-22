@@ -9,3 +9,29 @@
     justify-content: center;
     align-items: center;
 }
+
+
+.backBtn {
+    text-decoration: none;
+    color: white;
+    /* border: solid black; */
+    font-weight: bolder;
+    padding: 2px;
+    background: rgb(46, 211, 73);
+    border-radius: 7px;
+    margin-left: 20px;
+    box-shadow: red 2px;
+}
+
+
+.backBtn:hover {
+    color: black;
+    background: white;
+}
+
+
+.main {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}

@@ -1,7 +1,8 @@
 .chapterContainer {
-    border: solid;
+    /* border: solid; */
     width: 15%;
     background-color: rgb(181, 177, 177);
+    background: rgb(47, 45, 45);
     padding: 5px;
     height: 70vh;
 
@@ -12,7 +13,8 @@
     text-align: center;
     width: 100%;
     background: black;
-    color: white;
+    background: white;
+    /* color: white; */
 }
 
 .headerContainer {

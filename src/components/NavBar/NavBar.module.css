@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #333;
+    /* background: #333; */
+    background-color: blue;
     color: white;
     padding: 10px 20px;
     position: sticky;

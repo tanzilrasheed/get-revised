@@ -3,12 +3,24 @@ import Chapter from '../Chapter/Chapter.jsx'
 import styles from './ChapterContainer.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-const ChapterContainer = ({ chaptersArr, subjectsObj, seSubjectsObj }) => {
-    const [editMode, setEditMode] = useState(false);
 
+
+const ChapterContainer = ({ selectedSubject, selectedChapter, setSelectedChapter, subjectsObj, setSubjectsObj }) => {
+    const [editMode, setEditMode] = useState(false);
+    const [chaptersArr, setChapterArr] = useState(Object.keys(subjectsObj[selectedSubject]));
+    
     const toggleEditMode = () => {
         setEditMode(() => !editMode);
     }
+
+    const handleAddChapter = () => {
+        const input = prompt('enter chapter name');
+        subjectsObj[selectedSubject][input] = {introduction:{subtopics:{}, description:'', points:[]}};
+        localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+        setChapterArr(Object.keys(subjectsObj[selectedSubject]));
+        setSubjectsObj({...subjectsObj});
+    }
+    
     return (
         <>
             <div className={styles.chapterContainer}>
@@ -33,7 +45,10 @@ const ChapterContainer = ({ chaptersArr, subjectsObj, seSubjectsObj }) => {
                     )}
                 </div>
                 {editMode && (
-                    <button className={styles.addChapterBtn}>
+                    <button 
+                        className={styles.addChapterBtn}
+                        onClick={handleAddChapter}
+                    >
                         Add Chapter
                     </button>
                 )}
@@ -41,9 +56,14 @@ const ChapterContainer = ({ chaptersArr, subjectsObj, seSubjectsObj }) => {
                     {chaptersArr.map((chapter) => {
                         return (
                             <Chapter 
+                                key={chapter}
                                 chapter={chapter} 
                                 editMode={editMode}
-                                key={chapter}
+                                subjectsObj={subjectsObj}
+                                setChapterArr={setChapterArr}
+                                selectedSubject={selectedSubject}
+                                selectedChapter={selectedChapter}
+                                setSelectedChapter={setSelectedChapter}
                             />
                         )
                     })}

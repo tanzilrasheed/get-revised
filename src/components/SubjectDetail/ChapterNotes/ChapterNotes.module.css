@@ -1,0 +1,71 @@
+.notesContainer {
+    /* border: solid; */
+    width: 70%;
+    background: yellowgreen;
+    padding: 7px;
+    height: 70vh;
+    overflow: auto;
+    box-shadow:  0 0 50px 0 black;
+}
+
+
+.emptyChapterNotesDiv {
+    width: 70%;
+    background-color: yellowgreen;
+    padding: 7px;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:  0 0 50px 0 black;
+}
+
+
+.subtopicDiv {
+    border: solid;
+    padding: 7px;
+    margin: 7px;
+}
+
+
+
+.chapterName {
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.chapterHeader {
+    display: flex;
+}
+
+
+.chapterEditBtn {
+    padding: 5px;
+    height: fit-content;
+    color: white;
+    background: blue;
+    font-weight: bolder;
+}
+
+
+.doneBtn {
+    padding: 5px;
+    height: fit-content;
+    color: white;
+    background: rgb(8, 229, 52);
+    font-weight: bolder;
+}
+
+
+.addTopicDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding: 7px;
+}
+
+
+.addTopicBtn {
+    background: rgb(67, 234, 67);
+    font-weight: bold;
+}

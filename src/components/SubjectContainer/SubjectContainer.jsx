@@ -4,12 +4,12 @@ import styles from './SubjectContainer.module.css';
 import EditForm from '../EditForm/EditForm.jsx';
 
 
-const SubjectContainer = ({}) => {
+const SubjectContainer = () => {
     const [subjectsObj, setSubjectsObj] = useState(JSON.parse(localStorage.getItem("subjects")) || {});
     const [isAddSubjectVisible, setAddSubjectVisible] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [isEditFormVisible, setEditFormVisible] = useState(false);
-    const [editSubject, setEditSubject] = useState(null);
+    const [editValue, setEditValue] = useState(null);
 
     const inputRef = useRef(null); // Create a ref for the input
     const subjectList = Object.keys(subjectsObj).reverse();
@@ -59,26 +59,15 @@ const SubjectContainer = ({}) => {
         setInputValue('');
     }
 
-    const editObjProperty = (obj, oldProp, newProp) => {
-        const newObj = {}
-        for (let x in obj) {
-            if (oldProp === x) {
-                newObj[newProp] = obj[oldProp];
-            } else {
-                newObj[x] = obj[x];
-            }
-        }
-        return newObj;
-    }
+    
 
     return (
         <>
             {isEditFormVisible && (
                 <EditForm 
-                    editSubject={editSubject}
+                    editValue={editValue}
                     setEditFormVisible={setEditFormVisible} 
                     subjectsObj={subjectsObj}
-                    editObjProperty={editObjProperty}
                     setSubjectsObj={setSubjectsObj}
                 />
             )}
@@ -129,11 +118,10 @@ const SubjectContainer = ({}) => {
                             <Subject
                                 key={subject}
                                 subject={subject}
-                                editObjProperty={editObjProperty}
                                 subjectsObj={subjectsObj}
                                 setSubjectsObj={setSubjectsObj}
                                 setEditFormVisible={setEditFormVisible}
-                                setEditSubject={setEditSubject}
+                                setEditValue={setEditValue}
                             />
                         );
                     })}

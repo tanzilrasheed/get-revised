@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    /* font-family:   'Arial Narrow Bold', sans-serif; */
+    font-family: cursive;
 }
 
 html {
@@ -9,11 +11,51 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background: lightskyblue;
+    /* background: lightskyblue; */
 }
 
 @media screen and (max-width: 600px) {
     html {
         font-size: small;
     }
+}
+
+
+.description {
+    color: blue;
+    /* background: white; */
+    resize: none;
+    width: 100%;
+    height: auto;
+    min-height: 20px;
+}
+
+
+
+.descriptionReadOnly {
+    border: none;
+    color: blue;
+    font-weight: 400;
+    resize: none;
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    min-height: 20px;
+}
+
+
+.pointDescriptionContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#pointDescription {
+    list-style: none;
+}
+
+
+.hidden {
+    display: none;
 }

@@ -1,13 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './EditForm.module.css';
 
-const EditForm = ({ editSubject, setEditFormVisible, subjectsObj, editObjProperty, setSubjectsObj }) => {
-    const [inputValue, setInputValue] = useState(editSubject);
+const EditForm = ({ editValue, setEditFormVisible, subjectsObj, setSubjectsObj }) => {
+    const editObjProperty = (obj, oldProp, newProp) => {
+        const newObj = {}
+        for (let x in obj) {
+            if (oldProp === x) {
+                newObj[newProp] = obj[oldProp];
+            } else {
+                newObj[x] = obj[x];
+            }
+        }
+        return newObj;
+    }
+    const [inputValue, setInputValue] = useState(editValue);
     const inputRef = useRef(null);
 
     useEffect(() => {
         inputRef.current?.focus();
-    }, [editSubject])
+    }, [editValue])
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -16,7 +27,7 @@ const EditForm = ({ editSubject, setEditFormVisible, subjectsObj, editObjPropert
             return;
         } else if (subjectsObj[inputValue.trim()] === undefined) {
             setEditFormVisible(false);
-            let updatedObj = editObjProperty(subjectsObj, editSubject, inputValue);
+            let updatedObj = editObjProperty(subjectsObj, editValue, inputValue);
             setSubjectsObj(updatedObj);
             localStorage.setItem("subjects", JSON.stringify(updatedObj));
         } else {
