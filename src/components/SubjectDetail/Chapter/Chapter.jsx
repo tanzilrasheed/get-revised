@@ -20,7 +20,7 @@ const Chapter = React.memo(({ chapter, editMode, subjectsObj, selectedSubject, s
     }
 
     const selectChapter = () => {
-        setSelectedChapter(chapter);        
+        setSelectedChapter(chapter);
     }
     return (
         <>

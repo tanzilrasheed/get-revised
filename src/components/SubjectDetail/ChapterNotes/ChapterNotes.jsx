@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ChapterNotes.module.css'
 import Topic from './Topic/Topic.jsx';
 
@@ -17,7 +17,7 @@ const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubject
             }
             current[locationArr[locationArr.length - 1]] = value;
         }
-        const topicsObj = subjectsObj[selectedSubject][selectedChapter];     
+        let topicsObj = subjectsObj[selectedSubject][selectedChapter];     
         const topicsArr = Object.keys(topicsObj);
         const [editMode, setEditMode] = useState(false);
         const toggleEditMode = () => {
@@ -33,28 +33,30 @@ const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubject
         
         return (
             <div className={styles.notesContainer}>
-                <header className={styles.chapterHeader}>
-                    <h1 className={styles.chapterName}>{selectedChapter}</h1>
-                    {editMode ? (
-                        <button
-                            className={styles.doneBtn}
-                            onClick={toggleEditMode}
-                        >Done</button>
-                    ) : (
-                        <button 
-                            className={styles.chapterEditBtn}
-                            onClick={toggleEditMode}
-                        >Edit</button>
+                <div className={styles.chapterHeaderContainer}>
+                    <header className={styles.chapterHeader}>
+                        <h1 className={styles.chapterName}>{selectedChapter}</h1>
+                        {editMode ? (
+                            <button
+                                className={styles.doneBtn}
+                                onClick={toggleEditMode}
+                            >Done</button>
+                        ) : (
+                            <button 
+                                className={styles.chapterEditBtn}
+                                onClick={toggleEditMode}
+                            >Edit</button>
+                        )}
+                    </header>
+                    {editMode && (
+                        <div className={styles.addTopicDiv}>
+                            <button 
+                                className={styles.addTopicBtn}
+                                onClick={addTopic}
+                            >Add Topic</button>
+                        </div>
                     )}
-                </header>
-                {editMode && (
-                    <div className={styles.addTopicDiv}>
-                        <button 
-                            className={styles.addTopicBtn}
-                            onClick={addTopic}
-                        >Add Topic</button>
-                    </div>
-                )}
+                </div>
                     
                 {topicsArr.map((topicName) => {
                     return (

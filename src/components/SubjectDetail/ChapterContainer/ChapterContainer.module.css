@@ -1,10 +1,10 @@
 .chapterContainer {
     /* border: solid; */
-    width: 15%;
+    width: 20%;
     background-color: rgb(181, 177, 177);
     background: rgb(47, 45, 45);
     padding: 5px;
-    height: 70vh;
+    height: 65vh;
 
 }
 
@@ -91,7 +91,9 @@
 
 @media screen and (max-width: 500px) {
     .chapterContainer {
-        width: 90vw;
+        width: 80vw;
+        position: absolute;
+
     }
     
 }

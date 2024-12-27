@@ -1,9 +1,16 @@
+.chapterHeaderContainer {
+    position: sticky;
+    top: 0px;
+    background: yellowgreen;
+    align-items: center;
+}
 .notesContainer {
     /* border: solid; */
-    width: 70%;
+    width: 75%;
     background: yellowgreen;
-    padding: 7px;
-    height: 70vh;
+    padding-left: 7px;
+    padding-right: 7px;
+    height: 65vh;
     overflow: auto;
     box-shadow:  0 0 50px 0 black;
 }
@@ -37,6 +44,7 @@
 
 .chapterHeader {
     display: flex;
+    align-items: center;
 }
 
 
@@ -68,4 +76,11 @@
 .addTopicBtn {
     background: rgb(67, 234, 67);
     font-weight: bold;
+}
+
+@media screen and (max-width: 800px){
+    .notesContainer {
+        position: absolute;
+        width: 90vw;
+    }    
 }

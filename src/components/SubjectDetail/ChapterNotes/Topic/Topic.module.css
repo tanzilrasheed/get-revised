@@ -4,4 +4,27 @@
     padding: 7px;
     background: white;
     font-weight: bolder;
+    border-radius: 10px;
+}
+
+
+.topicHeading {
+    /* border: solid; */
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.topicHeadingBtn > button:nth-child(1) {
+    background: blue;
+    color: white;   
+    padding: 3px;
+    margin-right: 5px;
+}
+
+.topicHeadingBtn > button:nth-child(2) {
+    background: red;
+    color: white;
+    padding: 3px;
 }
