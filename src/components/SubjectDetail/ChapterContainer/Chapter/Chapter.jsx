@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { editObjProperty } from "../../../Components";
 import styles from './Chapter.module.css';
 
 
-const Chapter = React.memo(({ chapter, editMode, subjectsObj, selectedSubject, setChapterArr, selectedChapter, setSelectedChapter }) => {
-
-    const handleEdit = () => {
+const Chapter = React.memo(({ chapter, editMode, selectedSubject, setChapterArr, selectedChapter, setSelectedChapter, subjectsObj, setSubjectsObj, setTopicsArr }) => {
+    const handleEdit = (e) => {
+        e.stopPropagation()
         let input = prompt('edit below', chapter);
-        // subjectsObj[selectedSubject][chapter]
+        if (input === null) {
+            return;
+        } else if (input.trim()){
+            const editedChaptersObj = editObjProperty(subjectsObj[selectedSubject], chapter, input);
+            if (selectedChapter === chapter) {
+                setSelectedChapter(input);
+            }
+            chapter = input;
+            subjectsObj[selectedSubject] = editedChaptersObj;
+            localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+            setSubjectsObj({...subjectsObj});
+            setChapterArr(Object.keys(subjectsObj[selectedSubject]));
+            console.log('newChapter: ', input);
+        } else {
+            alert("Chapter name can't be empty");
+        }
     }
 
     const handleDelete = (e) => {
@@ -21,6 +37,8 @@ const Chapter = React.memo(({ chapter, editMode, subjectsObj, selectedSubject, s
 
     const selectChapter = () => {
         setSelectedChapter(chapter);
+        let topicsObj = subjectsObj[selectedSubject][chapter];     
+        setTopicsArr(Object.keys(topicsObj));
     }
     return (
         <>

@@ -8,7 +8,7 @@ const SubjectDetail = ({}) => {
     const [subjectsObj, setSubjectsObj] = useState(JSON.parse(localStorage.getItem("subjects")) || {});
     const [selectedChapter, setSelectedChapter] = useState('');
     const selectedSubject = useLocation().state?.subject;
-
+    const [topicsArr, setTopicsArr] = useState([]);
     if (selectedSubject) {
         return (
             <>  
@@ -23,12 +23,15 @@ const SubjectDetail = ({}) => {
                         setSelectedChapter={setSelectedChapter}
                         subjectsObj={subjectsObj}
                         setSubjectsObj={setSubjectsObj}
+                        setTopicsArr={setTopicsArr}
                     />
                     <ChapterNotes
                         selectedSubject={selectedSubject}
                         selectedChapter={selectedChapter}
                         subjectsObj={subjectsObj}
                         setSubjectsObj={setSubjectsObj}
+                        topicsArr={topicsArr}
+                        setTopicsArr={setTopicsArr}
                     />
                 </main>
             </>

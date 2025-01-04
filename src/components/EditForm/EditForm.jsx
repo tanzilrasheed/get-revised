@@ -1,24 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
+import { editObjProperty } from '../Components';
 import styles from './EditForm.module.css';
 
 const EditForm = ({ editValue, setEditFormVisible, subjectsObj, setSubjectsObj }) => {
-    const editObjProperty = (obj, oldProp, newProp) => {
-        const newObj = {}
-        for (let x in obj) {
-            if (oldProp === x) {
-                newObj[newProp] = obj[oldProp];
-            } else {
-                newObj[x] = obj[x];
-            }
-        }
-        return newObj;
-    }
     const [inputValue, setInputValue] = useState(editValue);
     const inputRef = useRef(null);
 
     useEffect(() => {
         inputRef.current?.focus();
-    }, [editValue])
+    }, [editValue]);
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -49,7 +39,6 @@ const EditForm = ({ editValue, setEditFormVisible, subjectsObj, setSubjectsObj }
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
-        console.log(e.target.value);
     }
 
     return (

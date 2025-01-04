@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Chapter from '../Chapter/Chapter.jsx'
+import Chapter from './Chapter/Chapter.jsx';
 import styles from './ChapterContainer.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 
-const ChapterContainer = ({ selectedSubject, selectedChapter, setSelectedChapter, subjectsObj, setSubjectsObj }) => {
+const ChapterContainer = ({ selectedSubject, selectedChapter, setSelectedChapter, subjectsObj, setSubjectsObj, setTopicsArr }) => {
     const [editMode, setEditMode] = useState(false);
     const [chaptersArr, setChapterArr] = useState(Object.keys(subjectsObj[selectedSubject]));
     
@@ -15,10 +15,14 @@ const ChapterContainer = ({ selectedSubject, selectedChapter, setSelectedChapter
 
     const handleAddChapter = () => {
         const input = prompt('enter chapter name');
-        subjectsObj[selectedSubject][input] = {introduction:{subtopics:{}, description:'', points:[]}};
-        localStorage.setItem('subjects', JSON.stringify(subjectsObj));
-        setChapterArr(Object.keys(subjectsObj[selectedSubject]));
-        setSubjectsObj({...subjectsObj});
+        if (input.trim()) {
+            subjectsObj[selectedSubject][input] = {introduction:{description:''}};
+            localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+            setChapterArr(Object.keys(subjectsObj[selectedSubject]));
+            setSubjectsObj({...subjectsObj});
+        } else {
+            alert('please enter something');
+        }
     }
     
     return (
@@ -64,6 +68,8 @@ const ChapterContainer = ({ selectedSubject, selectedChapter, setSelectedChapter
                                 selectedSubject={selectedSubject}
                                 selectedChapter={selectedChapter}
                                 setSelectedChapter={setSelectedChapter}
+                                setSubjectsObj={setSubjectsObj}
+                                setTopicsArr={setTopicsArr}
                             />
                         )
                     })}

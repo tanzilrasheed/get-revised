@@ -3,12 +3,7 @@ import styles from './ChapterNotes.module.css'
 import Topic from './Topic/Topic.jsx';
 
 
-
-
-
-
-
-const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubjectsObj}) => {
+const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubjectsObj, topicsArr, setTopicsArr}) => {
     if (selectedChapter) {
         const updateObjValue = (obj, locationArr, value) => {
             let current = obj
@@ -17,18 +12,17 @@ const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubject
             }
             current[locationArr[locationArr.length - 1]] = value;
         }
-        let topicsObj = subjectsObj[selectedSubject][selectedChapter];     
-        const topicsArr = Object.keys(topicsObj);
+        
         const [editMode, setEditMode] = useState(false);
         const toggleEditMode = () => {
             setEditMode(() => !editMode);
         }
         const addTopic = () => {
             let input = prompt('enter Topic Name');
-            subjectsObj[selectedSubject][chapter][input] = {subtopics:{}};
-            
+            subjectsObj[selectedSubject][selectedChapter][input] = {description:''};
             localStorage.setItem('subjects', JSON.stringify(subjectsObj));
             setSubjectsObj({...subjectsObj});
+            setTopicsArr([...topicsArr, input]);
         }
         
         return (
@@ -63,13 +57,14 @@ const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubject
                         <Topic 
                             key={topicName}
                             topicName={topicName}
-                            topicObj={topicsObj[topicName]}
+                            topicObj={subjectsObj[selectedSubject][selectedChapter][topicName]}
                             editMode={editMode}
                             setSubjectsObj={setSubjectsObj}
                             subjectsObj={subjectsObj}
                             selectedSubject={selectedSubject}
                             selectedChapter={selectedChapter}
                             updateObjValue={updateObjValue}
+                            setTopicsArr={setTopicsArr}
                         />
                     )
                 })}
