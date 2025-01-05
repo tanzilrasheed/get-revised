@@ -1,11 +1,14 @@
-import { useState } from "react";
-import TextEditor from "../../../../../get-revised/src/components/TextEditor/TextEditor";
+import { useEffect, useState } from "react";
+import TextEditor from "../../../../get-revised/src/components/TextEditor/TextEditor";
 import styles from './RevisionTopic.module.css'
 
 const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicIndex }) => {
     const [subjectsObj, setSubjectsObj] = useState(JSON.parse(localStorage.getItem('subjects')) || {});
     const [subject, chapter, topic] = topicLocationArr
     const [description, setDescription] = useState(subjectsObj[subject][chapter][topic]['description']);
+    useEffect(() => {
+        setDescription(subjectsObj[subject][chapter][topic]['description']);
+    }, [currentTopicIndex])
     const [editMode, setEditMode] = useState(false);
     const toggleEditMode = () => {
         setEditMode(!editMode);
@@ -28,10 +31,11 @@ const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicInd
                 subjectsObj={subjectsObj}
                 setSubjectsObj={setSubjectsObj}
             />
+                {/* {(subjectsObj[subject][chapter][topic]['description'])} */}
             <div>
                 <button 
                     onClick={() => {
-                    setCurrentTopicIndex(currentTopicIndex + 1);
+                        setCurrentTopicIndex(currentTopicIndex + 1);                    
                     }}
                     className={styles.nextBtn}
                 >next</button>
