@@ -1,0 +1,13 @@
+.revisionContainer {
+    height: 75vh;
+    overflow: auto;
+}
+
+.header {
+    text-align: center;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+}

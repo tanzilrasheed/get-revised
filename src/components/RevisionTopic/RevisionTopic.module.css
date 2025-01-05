@@ -1,0 +1,10 @@
+.TopicContainer {
+    width: 60%;
+    border: solid;
+    background: grey;
+}
+
+.nextBtn {
+    background: black;
+    color: white;
+}

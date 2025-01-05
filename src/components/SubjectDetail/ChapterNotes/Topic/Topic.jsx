@@ -17,6 +17,12 @@ const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, sel
         }
     }
 
+    const handleSchedule = () => {
+        subjectsObj[selectedSubject][selectedChapter][topicName]['date'] = new Date();
+        subjectsObj[selectedSubject][selectedChapter][topicName]['totalRevision'] = 0;
+        setSubjectsObj({...subjectsObj});
+        localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+    }
     return (
         <div className={styles.topicContainer}>
             <div className={styles.topicHeading}>
@@ -41,7 +47,8 @@ const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, sel
                 setSubjectsObj={setSubjectsObj}
             />
             {editMode && (
-                <button>schedule</button>
+                (subjectsObj[selectedSubject][selectedChapter][topicName]['totalRevision'] === undefined) &&
+                <button onClick={handleSchedule}>schedule</button>
             )}
         </div>
     )
