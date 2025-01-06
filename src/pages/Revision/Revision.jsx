@@ -14,7 +14,7 @@ const Revision = () => {
     for (let chapter in revisionTopics[subject]) {
       for (let topic of revisionTopics[subject][chapter]) {   
         let todayDateString = subjectsObj[subject][chapter][topic].date;
-        if (subjectsObj[subject][chapter][topic].totalRevision === 0 && (new Date(todayDateString).getTime()   <= todayDate.getTime() && new Date(todayDateString).getTime() + 18000000 >= todayDate.getTime())) { //check if first revision then time is 10 mins more and 5 hours less
+        if (subjectsObj[subject][chapter][topic].totalRevision === 0 && (new Date(todayDateString).getTime()  + 600000 <= todayDate.getTime() && new Date(todayDateString).getTime() + 18000000 >= todayDate.getTime())) { //check if first revision then time is 10 mins more and 5 hours less
           todayTopics.push([subject, chapter, topic]);
         } else if (subjectsObj[subject][chapter][topic].totalRevision === 1 && (new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 1)) <= new Date(todayDate) && new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 2)) <= new Date(todayDate)) {
           todayTopics.push([subject, chapter, topic]);

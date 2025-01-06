@@ -6,6 +6,7 @@ import styles from './Chapter.module.css';
 
 
 const Chapter = React.memo(({ chapter, editMode, selectedSubject, setChapterArr, selectedChapter, setSelectedChapter, subjectsObj, setSubjectsObj, setTopicsArr }) => {
+    const revisionTopics = JSON.parse(localStorage.getItem('revisionTopics')) || {};
     const handleEdit = (e) => {
         e.stopPropagation()
         let input = prompt('edit below', chapter);
@@ -32,7 +33,14 @@ const Chapter = React.memo(({ chapter, editMode, selectedSubject, setChapterArr,
         e.stopPropagation();
         delete subjectsObj[selectedSubject][chapter];
         localStorage.setItem("subjects", JSON.stringify(subjectsObj));
-        setChapterArr(Object.keys(subjectsObj[selectedSubject]))
+        setChapterArr(Object.keys(subjectsObj[selectedSubject]));
+        if (revisionTopics[selectedSubject][chapter] !== undefined) {
+            delete revisionTopics[selectedSubject][chapter];
+            if (Object.keys(revisionTopics[selectedSubject]).length === 0) {
+                delete revisionTopics[selectedSubject];
+            }
+            localStorage.setItem('revisionTopics', JSON.stringify(revisionTopics));
+        }         
     }
 
     const selectChapter = () => {

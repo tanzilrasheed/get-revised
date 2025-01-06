@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import Subject from '../Subject/Subject.jsx';
+import Subject from './Subject/Subject.jsx';
 import styles from './SubjectContainer.module.css';
 import EditForm from '../EditForm/EditForm.jsx';
 

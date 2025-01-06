@@ -15,6 +15,17 @@ const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, sel
             delete subjectsObj[selectedSubject][selectedChapter][topicName];
             localStorage.setItem("subjects", JSON.stringify(subjectsObj));
             setTopicsArr(Object.keys(subjectsObj[selectedSubject][selectedChapter]));
+            const topics = revisionTopics[selectedSubject][selectedChapter];
+            if (topics.includes(topicName)) {
+                topics.splice(topics.indexOf(topicName), 1);
+                if (topics.length === 0) {
+                    delete revisionTopics[selectedSubject][selectedChapter];
+                    if (Object.keys(revisionTopics[selectedSubject]).length === 0) {
+                        delete revisionTopics[selectedSubject];
+                    }
+                }
+                localStorage.setItem('revisionTopics', JSON.stringify(revisionTopics));
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import styles from './Subject.module.css';
 
 
 const  Subject = React.memo(({ subject, subjectsObj, setSubjectsObj, setEditFormVisible, setEditValue}) => {
+    const revisionTopics = JSON.parse(localStorage.getItem('revisionTopics') || {});
     const handleEdit = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -18,6 +19,10 @@ const  Subject = React.memo(({ subject, subjectsObj, setSubjectsObj, setEditForm
         delete subjectsObj[subject];
         localStorage.setItem("subjects", JSON.stringify(subjectsObj));
         setSubjectsObj(JSON.parse(localStorage.getItem("subjects")));
+        if (revisionTopics[subject] !== undefined) {
+            delete revisionTopics[subject];
+            localStorage.setItem('revisionTopics', JSON.stringify(revisionTopics));
+        }
     }
 
 

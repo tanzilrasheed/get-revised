@@ -29,7 +29,6 @@ const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicInd
                 subjectsObj={subjectsObj}
                 setSubjectsObj={setSubjectsObj}
             />
-                {/* {(subjectsObj[subject][chapter][topic]['description'])} */}
             <div>
                 <button 
                     onClick={() => {
