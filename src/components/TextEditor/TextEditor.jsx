@@ -17,7 +17,7 @@ const TextEditor = ({
 
   useEffect(() => {
     editorRef.current.innerHTML = description;
-  }, [editMode, selectedChapter, description]);
+  }, [editMode, selectedChapter]);
 
   useEffect(() => {
     const handleSelectionChange = () => {

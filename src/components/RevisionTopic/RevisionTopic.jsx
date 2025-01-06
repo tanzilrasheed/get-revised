@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import TextEditor from "../../../../get-revised/src/components/TextEditor/TextEditor";
 import styles from './RevisionTopic.module.css'
 
-const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicIndex }) => {
+const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicIndex, todayTopics }) => {
     const [subjectsObj, setSubjectsObj] = useState(JSON.parse(localStorage.getItem('subjects')) || {});
     const [subject, chapter, topic] = topicLocationArr
     const [description, setDescription] = useState(subjectsObj[subject][chapter][topic]['description']);
-    useEffect(() => {
-        setDescription(subjectsObj[subject][chapter][topic]['description']);
-    }, [currentTopicIndex])
     const [editMode, setEditMode] = useState(false);
     const toggleEditMode = () => {
         setEditMode(!editMode);
     }
+    
     return (
         <div className={styles.TopicContainer}>
             {topicLocationArr.join('/')}
@@ -25,9 +23,9 @@ const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicInd
                 editMode={editMode}
                 description={description}
                 setDescription={setDescription}
-                selectedSubject={'Python'}
-                selectedChapter={'Strings'}
-                topicName={'introduction'}
+                selectedSubject={topicLocationArr[0]}
+                selectedChapter={topicLocationArr[1]}
+                topicName={topicLocationArr[2]}
                 subjectsObj={subjectsObj}
                 setSubjectsObj={setSubjectsObj}
             />
@@ -35,7 +33,13 @@ const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicInd
             <div>
                 <button 
                     onClick={() => {
-                        setCurrentTopicIndex(currentTopicIndex + 1);                    
+                        subjectsObj[subject][chapter][topic].totalRevision = subjectsObj[subject][chapter][topic].totalRevision + 1;
+                        localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+                        setCurrentTopicIndex(() => currentTopicIndex + 1);   
+                        const [newSubject, newChapter, newTopic] = todayTopics[currentTopicIndex + 1]; 
+                        if (todayTopics.length > currentTopicIndex + 1) {
+                            setDescription(subjectsObj[newSubject][newChapter][newTopic]['description']);  
+                        }
                     }}
                     className={styles.nextBtn}
                 >next</button>

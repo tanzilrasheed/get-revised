@@ -4,6 +4,7 @@ import TextArea from '../../../TextEditor/TextEditor.jsx';
 
 const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, selectedChapter, selectedSubject, updateObjValue, setTopicsArr }) => {
     const [description, setDescription] = useState(topicObj.description);
+    const revisionTopics = JSON.parse(localStorage.getItem('revisionTopics')) || {};
     useEffect(() => {
         setDescription(topicObj.description);
     }, [selectedChapter])
@@ -22,6 +23,17 @@ const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, sel
         subjectsObj[selectedSubject][selectedChapter][topicName]['totalRevision'] = 0;
         setSubjectsObj({...subjectsObj});
         localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+        if (revisionTopics[selectedSubject]) {
+            if (revisionTopics[selectedSubject][selectedChapter]) {
+                revisionTopics[selectedSubject][selectedChapter].push(topicName);
+            } else {
+                revisionTopics[selectedSubject][selectedChapter] = [topicName];
+            }
+        } else {
+            revisionTopics[selectedSubject] = {};
+            revisionTopics[selectedSubject][selectedChapter] = [topicName];
+        }
+        localStorage.setItem('revisionTopics', JSON.stringify(revisionTopics));
     }
     return (
         <div className={styles.topicContainer}>
