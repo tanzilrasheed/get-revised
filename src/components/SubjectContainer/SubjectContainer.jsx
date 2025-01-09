@@ -9,7 +9,7 @@ const SubjectContainer = () => {
     const [isAddSubjectVisible, setAddSubjectVisible] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [isEditFormVisible, setEditFormVisible] = useState(false);
-    const [editValue, setEditValue] = useState(null);
+    const [editValue, setEditValue] = useState('');
 
     const inputRef = useRef(null); // Create a ref for the input
     const subjectList = Object.keys(subjectsObj).reverse();

@@ -3,34 +3,32 @@ import RevisionTopic from '../../components/RevisionTopic/RevisionTopic.jsx';
 import styles from './Revision.module.css';
 
 const Revision = () => {
-  const subjectsObj = JSON.parse(localStorage.getItem('subjects') || {});
+  const subjectsObj = JSON.parse(localStorage.getItem('subjects')) || {};
   const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
   const revisionTopics = JSON.parse(localStorage.getItem('revisionTopics')) || {};
-  console.log(revisionTopics);
   
   const todayTopics = [];
   const todayDate = new Date();
   for (let subject in revisionTopics) {
     for (let chapter in revisionTopics[subject]) {
       for (let topic of revisionTopics[subject][chapter]) {   
-        let todayDateString = subjectsObj[subject][chapter][topic].date;
-        if (subjectsObj[subject][chapter][topic].totalRevision === 0 && (new Date(todayDateString).getTime()  + 600000 <= todayDate.getTime() && new Date(todayDateString).getTime() + 18000000 >= todayDate.getTime())) { //check if first revision then time is 10 mins more and 5 hours less
+        let scheduleDate = subjectsObj[subject][chapter][topic].date;
+        if (subjectsObj[subject][chapter][topic].totalRevision === 0 && (new Date(scheduleDate).getTime()  + 600000 <= todayDate.getTime() && new Date(scheduleDate).getTime() + 18000000 >= todayDate.getTime())) { //check if first revision then time is 10 mins more and 5 hours less
           todayTopics.push([subject, chapter, topic]);
-        } else if (subjectsObj[subject][chapter][topic].totalRevision === 1 && (new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 1)) <= new Date(todayDate) && new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 2)) <= new Date(todayDate)) {
+        } else if (subjectsObj[subject][chapter][topic].totalRevision === 1 && (new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 1)) <= new Date(todayDate) && new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 2) >= new Date(todayDate)) {
           todayTopics.push([subject, chapter, topic]);
-        } else if (subjectsObj[subject][chapter][topic].totalRevision === 2 && (new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 3)) <= new Date(todayDate) && new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 5)) <= new Date(todayDate))) {
+        } else if (subjectsObj[subject][chapter][topic].totalRevision === 2 && (new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 3)) <= new Date(todayDate) && new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 5) >= new Date(todayDate)) {
           todayTopics.push([subject, chapter, topic]);
-        } else if (subjectsObj[subject][chapter][topic].totalRevision === 3 && (new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 7)) <= new Date(todayDate) && new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 10)) <= new Date(todayDate))) {
+        } else if (subjectsObj[subject][chapter][topic].totalRevision === 3 && (new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 7)) <= new Date(todayDate) && new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 10) >= new Date(todayDate)) {
           todayTopics.push([subject, chapter, topic]);
-        } else if (subjectsObj[subject][chapter][topic].totalRevision === 4 && (new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 14)) <= new Date(todayDate) && new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 21)) <= new Date(todayDate))) {
+        } else if (subjectsObj[subject][chapter][topic].totalRevision === 4 && (new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 14)) <= new Date(todayDate) && new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 21) >= new Date(todayDate)) {
           todayTopics.push([subject, chapter, topic]);
-        } else if (subjectsObj[subject][chapter][topic].totalRevision === 5 && (new Date(new Date(todayDateString).setDate(new Date(todayDateString).getDate() + 30)) <= new Date(todayDate) && new Date(subjectsObj[subject][chapter][topic].date.setDate(subjectsObj[subject][chapter][topic].date.getDate() + 45).toLocaleDateString()) <= new Date(todayDate.toLocaleDateString()))) {
+        } else if (subjectsObj[subject][chapter][topic].totalRevision === 5 && (new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 30)) <= new Date(todayDate) && new Date(scheduleDate).setDate(new Date(scheduleDate).getDate() + 45) >= new Date(todayDate)) {
           todayTopics.push([subject, chapter, topic]);
         }
       }
     }
   }
-  console.log(todayTopics);
   
   const totalTopics = todayTopics.length;
   if (currentTopicIndex < totalTopics) {

@@ -10,4 +10,13 @@ const editObjProperty = (obj, oldProp, newProp) => {
     return newObj;
 }
 
-export { editObjProperty };
+
+const updateObjValue = (obj, locationArr, value) => {
+    let current = obj
+    for (let i = 0; i < locationArr.length - 1; i++) {
+        current = current[locationArr[i]];                
+    }
+    current[locationArr[locationArr.length - 1]] = value;
+}
+
+export { editObjProperty, updateObjValue };

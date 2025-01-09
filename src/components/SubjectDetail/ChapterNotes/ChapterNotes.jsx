@@ -5,13 +5,6 @@ import Topic from './Topic/Topic.jsx';
 
 const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubjectsObj, topicsArr, setTopicsArr}) => {
     if (selectedChapter) {
-        const updateObjValue = (obj, locationArr, value) => {
-            let current = obj
-            for (let i = 0; i < locationArr.length - 1; i++) {
-                current = current[locationArr[i]];                
-            }
-            current[locationArr[locationArr.length - 1]] = value;
-        }
         
         const [editMode, setEditMode] = useState(false);
         const toggleEditMode = () => {
@@ -63,7 +56,6 @@ const ChapterNotes = ({selectedChapter, selectedSubject, subjectsObj, setSubject
                             subjectsObj={subjectsObj}
                             selectedSubject={selectedSubject}
                             selectedChapter={selectedChapter}
-                            updateObjValue={updateObjValue}
                             setTopicsArr={setTopicsArr}
                         />
                     )

@@ -1,13 +1,37 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Topic.module.css';
 import TextArea from '../../../TextEditor/TextEditor.jsx';
-
-const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, selectedChapter, selectedSubject, updateObjValue, setTopicsArr }) => {
+import { editObjProperty } from '../../../Components';
+const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, selectedChapter, selectedSubject, setTopicsArr }) => {
     const [description, setDescription] = useState(topicObj.description);
     const revisionTopics = JSON.parse(localStorage.getItem('revisionTopics')) || {};
     useEffect(() => {
         setDescription(topicObj.description);
-    }, [selectedChapter])
+    }, [selectedChapter]);
+    
+    const handleEdit = (e) => {
+        let input = prompt('enter new topic name', topicName);        
+        if (input === null) {
+            return;
+        } else if (input.trim()) {
+            const editedTopicsObj = editObjProperty(subjectsObj[selectedSubject][selectedChapter], topicName, input);
+            subjectsObj[selectedSubject][selectedChapter] = editedTopicsObj;
+            localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+            if (revisionTopics[selectedSubject]) {
+                if (revisionTopics[selectedSubject][selectedChapter]) {
+                    if (revisionTopics[selectedSubject][selectedChapter].includes(topicName)) {
+                        revisionTopics[selectedSubject][selectedChapter].splice(revisionTopics[selectedSubject][selectedChapter].indexOf(topicName), 1, input);
+                        localStorage.setItem('revisionTopics', JSON.stringify(revisionTopics));
+                    }
+                }
+            }
+            topicName = input;
+            setSubjectsObj({...subjectsObj});
+            setTopicsArr(Object.keys(subjectsObj[selectedSubject][selectedChapter]));
+        } else {
+            alert("Topic name can't be empty");
+        }
+    }
 
     const handleDelete = (e) => {
         let confirmation = prompt('type "y" to delete').toLowerCase();
@@ -54,7 +78,7 @@ const Topic = ({ topicName, topicObj, editMode, subjectsObj, setSubjectsObj, sel
                 </span>
                 {editMode && (
                     <div className={styles.topicHeadingBtn}>
-                        <button>Edit</button> 
+                        <button onClick={handleEdit}>Edit</button> 
                         <button onClick={handleDelete}>Delete</button>
                     </div>
                 )}
