@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TextEditor from "../../../../get-revised/src/components/TextEditor/TextEditor";
+import TextEditor from '../TextEditor/TextEditor.jsx';
 import styles from './RevisionTopic.module.css'
 
 const RevisionTopic = ({ topicLocationArr, currentTopicIndex, setCurrentTopicIndex, todayTopics }) => {
