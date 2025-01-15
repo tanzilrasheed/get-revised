@@ -4,6 +4,7 @@ import styles from './EditForm.module.css';
 
 const EditForm = ({ editValue, setEditFormVisible, subjectsObj, setSubjectsObj }) => {
     const [inputValue, setInputValue] = useState(editValue);
+    const revisionTopics = JSON.parse(localStorage.getItem('revisionTopics')) || {};
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -13,13 +14,15 @@ const EditForm = ({ editValue, setEditFormVisible, subjectsObj, setSubjectsObj }
     const handleSave = (e) => {
         e.preventDefault();
         if (inputValue.trim() === '') {
-            alert('Subject name can not be empty')
+            alert('Subject name can not be empty');
             return;
         } else if (subjectsObj[inputValue.trim()] === undefined) {
             setEditFormVisible(false);
-            let updatedObj = editObjProperty(subjectsObj, editValue, inputValue);
+            const updatedRevisionTopics = editObjProperty(revisionTopics, editValue, inputValue);
+            const updatedObj = editObjProperty(subjectsObj, editValue, inputValue);
             setSubjectsObj(updatedObj);
             localStorage.setItem("subjects", JSON.stringify(updatedObj));
+            localStorage.setItem("revisionTopics", JSON.stringify(updatedRevisionTopics));
         } else {
             alert(`${inputValue.trim()} name already present`);
         }

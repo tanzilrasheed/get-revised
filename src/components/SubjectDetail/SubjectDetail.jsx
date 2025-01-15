@@ -9,6 +9,7 @@ const SubjectDetail = ({}) => {
     const [selectedChapter, setSelectedChapter] = useState('');
     const selectedSubject = useLocation().state?.subject;
     const [topicsArr, setTopicsArr] = useState([]);
+    const [isChapterContainerVisible, setChapterContainerVisible] = useState(true);
     if (selectedSubject) {
         return (
             <>  
@@ -33,6 +34,35 @@ const SubjectDetail = ({}) => {
                         topicsArr={topicsArr}
                         setTopicsArr={setTopicsArr}
                     />
+                </main>
+                <main className={styles.mainPhoneView}>
+                    <div className={styles.toggleBtnDiv}>
+                    <button 
+                        onClick={() => {
+                            setChapterContainerVisible(!isChapterContainerVisible);
+                        }}
+                        className={styles.toggleBtn}
+                    >☰</button>
+                    </div>
+                    {isChapterContainerVisible ? (                        
+                        <ChapterContainer 
+                            selectedSubject={selectedSubject}
+                            selectedChapter={selectedChapter}
+                            setSelectedChapter={setSelectedChapter}
+                            subjectsObj={subjectsObj}
+                            setSubjectsObj={setSubjectsObj}
+                            setTopicsArr={setTopicsArr}
+                        />
+                    ) : (
+                        <ChapterNotes
+                            selectedSubject={selectedSubject}
+                            selectedChapter={selectedChapter}
+                            subjectsObj={subjectsObj}
+                            setSubjectsObj={setSubjectsObj}
+                            topicsArr={topicsArr}
+                            setTopicsArr={setTopicsArr}
+                        />
+                    )}
                 </main>
             </>
         )

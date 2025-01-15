@@ -14,12 +14,15 @@ const Chapter = React.memo(({ chapter, editMode, selectedSubject, setChapterArr,
             return;
         } else if (input.trim()){
             const editedChaptersObj = editObjProperty(subjectsObj[selectedSubject], chapter, input);
+            const updatedRevisionSubjectsTopics = editObjProperty(revisionTopics[selectedSubject], chapter, input);
             if (selectedChapter === chapter) {
                 setSelectedChapter(input);
             }
             chapter = input;
             subjectsObj[selectedSubject] = editedChaptersObj;
+            revisionTopics[selectedSubject] = updatedRevisionSubjectsTopics;
             localStorage.setItem('subjects', JSON.stringify(subjectsObj));
+            localStorage.setItem('revisionTopics', JSON.stringify(revisionTopics));
             setSubjectsObj({...subjectsObj});
             setChapterArr(Object.keys(subjectsObj[selectedSubject]));
             console.log('newChapter: ', input);

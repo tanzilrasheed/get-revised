@@ -37,3 +37,28 @@
     display: flex;
     justify-content: space-around;
 }
+
+.mainPhoneView {
+    display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+    .main {
+        display: none;
+    }
+    .mainPhoneView {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .toggleBtn {
+        background: none;
+        font-size: large;
+        border: none;
+    }
+    .toggleBtnDiv {
+        width: 90vw;
+    }
+}
