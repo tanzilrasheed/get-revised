@@ -5,7 +5,6 @@
     align-items: center;
 }
 .notesContainer {
-    /* border: solid; */
     width: 75%;
     background: yellowgreen;
     padding-left: 7px;
@@ -17,10 +16,10 @@
 
 
 .emptyChapterNotesDiv {
-    width: 70%;
+    width: 75%;
     background-color: yellowgreen;
     padding: 7px;
-    height: 70vh;
+    height: 65vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,4 +81,7 @@
     .notesContainer {
         width: 90vw;
     }    
+    .emptyChapterNotesDiv {
+        width: 90vw;
+    }
 }
