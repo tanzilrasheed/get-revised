@@ -1,12 +1,12 @@
 .chapterHeaderContainer {
     position: sticky;
     top: 0px;
-    background: blue;
+    background: 0096c7;
     align-items: center;
 }
 .notesContainer {
     width: 75%;
-    background: blue;
+    background: 0096c7;
     padding-left: 7px;
     padding-right: 7px;
     height: 65vh;
@@ -17,7 +17,7 @@
 
 .emptyChapterNotesDiv {
     width: 75%;
-    background-color: blue;
+    background-color: 0096c7;
     padding: 7px;
     height: 65vh;
     display: flex;
