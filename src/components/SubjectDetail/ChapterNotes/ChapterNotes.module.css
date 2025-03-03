@@ -6,7 +6,7 @@
 }
 .notesContainer {
     width: 75%;
-    background: yellowgreen;
+    background: lightblue;
     padding-left: 7px;
     padding-right: 7px;
     height: 65vh;
@@ -17,7 +17,7 @@
 
 .emptyChapterNotesDiv {
     width: 75%;
-    background-color: yellowgreen;
+    background-color: lightblue;
     padding: 7px;
     height: 65vh;
     display: flex;
